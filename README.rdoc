@@ -1,5 +1,5 @@
 == ratebeer
 
-Ratebeer is a beer rating application made as a course project with Ruby on rails  at University of Helsinki.
+Ratebeer is a beer database application made as a course project with Ruby on rails at University of Helsinki.
 
-[In Heroku] (https://glacial-basin-97695.herokuapp.com/breweries)
+[In Heroku](https://glacial-basin-97695.herokuapp.com/breweries)
