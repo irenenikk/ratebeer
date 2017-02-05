@@ -1,0 +1,13 @@
+<h1>Join a club</h1>
+<p id="notice"><%= notice %></p>
+
+<% unless @beer_clubs.nil? %>
+  <%= form_for(@membership) do |f| %>
+
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :to_s) %>
+
+    <%= f.submit %>
+  <% end %>
+  <% else %>
+  You are a member of all beer clubs
+<%end%>
