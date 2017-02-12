@@ -1,8 +1,14 @@
 language: ruby
 rvm:
-  - 2.3
-  - jruby
+- 2.3
 
 script: bundle exec rspec spec
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: INV93sTFohA5v4KKsttr99bqA0uQFJ47Bdf/3mnCvj/S2ZOAz2PYPNe3mCx2RM+f87COG6lsRZ10YE/otxd0q4fmZYSrl35rMyeTU0pzwkGqD5+yQqloJQwyZVMeq9yPZrFcxbCPZ5uDUEq+I5GLi17H8hjViSXh9r6Gs9xeKMeL8iG2Ol5VqkOnDLsQKVcvciUYBvLPQWLdw0etqX7U1FXV/94WQTxnps5JMnICdLVrW2VNkFWKyKXvulD25EsG4zCtqQQ6XiWeYZRKQfrgF3RWUCHKLU9zY+ORlTYmefeX4YCA0bEPZf4Ay3gHR7p0o77ahuJFWl3vO5yaW6ElxwAxr4KAeBpH3pmOTAxIROfjUus7xn4vPnOC/M8UrJjkX+oj/WXpxlbhWUn2qIeSawQ4H+C+x+RqrbN5fcDWlmU3wtMrr+/UaTwAHC5CSP93jxQbnnFb5CAKb2W8zhyt17sK3SF1KEtmneJTqNolAHPsQKii7KiTUossAaSQ22bJX2woWFXHvR+Ze7SPEr+OCqfBRwJnE/05Any6l9g42zwNxdszrhHVKvwbxLCmPaqwJdf4O0IKM30Z+LjtHJA+7EibKKXl+ovd0fM/2xpdJE20PEa5ei/N/+9ruoiN00nkmsamkNztD+RXOhrmCZxqyXV3KqZCJYYvdbY9jqFqSWM=
+  app: glacial-basin-97695
+  on:
+    repo: irenenikk/ratebeer
+    run: "rake db:migrate"
 
