@@ -28,4 +28,33 @@ class User < ActiveRecord::Base
     end
   end
 
+  def favorite_beer
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+#    ratings_by_style = ratings.group_by{ |rating| rating.beer.style}
+    favorite :style
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+    favorite :brewery
+  end
+
+  def favorite(attr)
+    return nil if ratings.empty?
+    ratings_by_attr = ratings.group_by{ |rating| rating.beer.send attr}          
+    ratings_by_attr.each do |attr, ratings|
+      ratings_by_attr[attr] = rating_average(ratings)
+    end
+    ratings_by_attr.sort_by{ |key, value| value}.last[0]
+  end
+
+  def rating_average(ratings)
+    ratings.inject(0.0){ |sum, el| sum + el.score }.to_f / ratings.size
+  end
+
 end

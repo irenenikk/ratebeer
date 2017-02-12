@@ -13,10 +13,16 @@
   <% end %>
 </p>
 
-<p>
   <% unless @user.ratings.empty? %>
-    has made <%= @user.ratings.count %> ratings, average <%= (@user.average_rating).round(2) %>
-</p>
+  <p>
+    has made <%= pluralize(@user.ratings.count , 'rating') %>, average <%= (@user.average_rating).round(2) %>
+  </p>
+  <p>
+    favorite beer <%= link_to @user.favorite_beer.name, @user.favorite_beer.name %>
+  </p>
+  <p>
+    favorite brewery <%= link_to @user.favorite_brewery.name, @user.favorite_brewery.name %>
+  </p>
 
 <p>
   <h2>
