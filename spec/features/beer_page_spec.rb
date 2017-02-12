@@ -2,6 +2,12 @@ require 'rails_helper'
 
 describe "Beer" do
   let!(:brewery) { FactoryGirl.create :brewery, name:"Stadin Panimo" }
+  let!(:user) { FactoryGirl.create :user }
+
+    before :each do
+      sign_in(username:"Pekka", password:"Salsa1")
+    end
+
 
   it "is saved correctly if name present" do
     visit new_beer_path
