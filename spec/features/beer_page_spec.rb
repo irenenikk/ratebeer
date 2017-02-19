@@ -3,6 +3,8 @@ require 'rails_helper'
 describe "Beer" do
   let!(:brewery) { FactoryGirl.create :brewery, name:"Stadin Panimo" }
   let!(:user) { FactoryGirl.create :user }
+  let!(:style) { FactoryGirl.create :style, name:"API" }
+
 
     before :each do
       sign_in(username:"Pekka", password:"Salsa1")
@@ -13,7 +15,7 @@ describe "Beer" do
     visit new_beer_path
 
     fill_in('beer[name]', with: 'beer')
-    select('IPA', from: 'beer[style]' )
+    select('API', from: 'beer[style_id]' )
     select('Stadin Panimo', from: 'beer[brewery_id]')
 
     expect{
@@ -26,7 +28,7 @@ describe "Beer" do
   it "is nto saved without a name" do
     visit new_beer_path
 
-    select('IPA', from: 'beer[style]' )
+    select('API', from: 'beer[style_id]' )
     select('Stadin Panimo', from: 'beer[brewery_id]')
 
     expect{

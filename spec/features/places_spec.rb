@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Places" do
   it "if is returned by the API, it is shown on the page" do
-    allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
+    allow(BeermappingApi).to receive(:fetch_places_in).with("kumpula").and_return(
       [ Place.new( name:"Oljenkorsi", id: 1 ) ]
     )
 
@@ -18,7 +18,7 @@ describe "Places" do
               Place.new( name:"Breezer", id: 2 ) ,
               Place.new( name:"Relaxin", id: 2 ) ]
 
-    allow(BeermappingApi).to receive(:places_in).with("kallio").and_return(
+    allow(BeermappingApi).to receive(:fetch_places_in).with("kallio").and_return(
         places
     )
     visit places_path
@@ -32,7 +32,7 @@ describe "Places" do
 
   it "if none found shows notice" do
     paikka = "viikki"
-    allow(BeermappingApi).to receive(:places_in).with(paikka).and_return(
+    allow(BeermappingApi).to receive(:fetch_places_in).with(paikka).and_return(
         []
     )
 
@@ -40,6 +40,6 @@ describe "Places" do
     fill_in('city', with: paikka)
     click_button "Search"
 
-    expect(page).to have_content "No locations in " + paikka 
+    expect(page).to have_content "No locations in " + paikka
   end
 end

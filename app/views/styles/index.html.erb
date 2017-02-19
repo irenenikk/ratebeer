@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Styles</h1>
+<p> Number of styles: <%= @styles.count %> </p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number of beers</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= link_to style.name, style %></td>
+        <td><%= style.beers.count%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

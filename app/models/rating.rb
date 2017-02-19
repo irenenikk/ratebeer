@@ -7,6 +7,6 @@ class Rating < ActiveRecord::Base
                                     only_integer: true }
 
   def to_s
-    return self.beer.name + ": " + self.score.to_s
+    self.beer.name + ": " + self.score.to_s
   end
 end

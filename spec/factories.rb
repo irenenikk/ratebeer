@@ -25,6 +25,11 @@ FactoryGirl.define do
   factory :beer do
     name "beer"
     brewery
-    style :style
+    style
+  end
+
+  factory :style do
+    name "style"
+    description "stylish"
   end
 end

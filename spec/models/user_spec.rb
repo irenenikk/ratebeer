@@ -42,7 +42,8 @@ RSpec.describe User, type: :model do
     it "has the correct average rating with two ratings" do
       user = User.create username:"Pekka", password:"Secret1", password_confirmation:"Secret1"
       brewery = Brewery.new name: "test", year: 2000
-      beer = Beer.new name: "testbeer", style: "teststyle"
+      style = Style.new name:"test", description:"test"
+      beer = Beer.new name: "testbeer", style: style
       rating = Rating.new score: 10, beer: beer
       rating2 = Rating.new score: 20, beer: beer
 
@@ -102,12 +103,15 @@ RSpec.describe User, type: :model do
     end
 
     it "if several rankings of different styles returns one with best scores" do
-      create_beer_with_style_and_rating(user, "lager", 20)
-      best = create_beer_with_style_and_rating(user, "lowalcohol", 45)
-      create_beer_with_style_and_rating(user, "lowalcohol", 50)
-      create_beer_with_style_and_rating(user, "IPA", 10)
-      create_beer_with_style_and_rating(user, "IPA", 50)
-      expect(user.favorite_style).to eq(best.style)
+      betterStyle = Style.create name:"betterStyle"
+      worseStyle = Style.create name:"worseStyle"
+      indifferentStyle = Style.create name:"indifferentStyle"
+      create_beer_with_style_and_rating(user, indifferentStyle, 20)
+      best = create_beer_with_style_and_rating(user, betterStyle, 45)
+      create_beer_with_style_and_rating(user, betterStyle, 50)
+      create_beer_with_style_and_rating(user, worseStyle, 10)
+      create_beer_with_style_and_rating(user, worseStyle, 50)
+      expect(user.favorite_style.name).to eq(best.style.name)
     end
   end
 
