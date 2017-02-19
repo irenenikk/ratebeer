@@ -45,6 +45,7 @@ end
 group :development, :test, :production do
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-its'
+  gem 'httparty'
 end
 
 group :production do
@@ -65,6 +66,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 ruby '2.3.1'
