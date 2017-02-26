@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, notice:'You have to be signed in to access this page' if current_user.nil?
   end
 
+  def isadmin?
+    redirect_to :back, notice:'You have to be admin to do this' if current_user.admin? == false
+  end
+
 end
