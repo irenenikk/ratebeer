@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <h1>
   <%= @user.username %>
@@ -15,7 +14,7 @@
 
   <% unless @user.ratings.empty? %>
   <p>
-    has made <%= pluralize(@user.ratings.count , 'rating') %>, average <%= (@user.average_rating).round(2) %>
+    has made <%= pluralize(@user.ratings.count , 'rating') %>, average <%= (@user.average_rating).round(1) %>
   </p>
   <p>
     favorite beer <%= link_to @user.favorite_beer.name, @user.favorite_beer.name %>
@@ -45,7 +44,7 @@
 </p>
 
 <% if @user == current_user %>
-  <p><%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <p><%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-primary' %></p>
 <% end %>
 
 

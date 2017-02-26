@@ -1,20 +1,72 @@
-<h1>Listing Ratings</h1>
+<h1>Ratings statistics</h1>
 <p>
   Number of ratings <%= @ratings.count %>
 </p>
 
-<ul>
- <% @ratings.each do |rating| %>
-   <li>
-     <% if rating.beer.nil? %>
-        <%= rating.score %>
-      <% else %>
-      <%= rating %> <%= link_to rating.user.username, rating.user %>
-     <% end %>
-   </li>
- <% end %>
-</ul>
+<% unless @ratings.empty? %>
+<div>
+  Latest ratings:
+  <ul>
+  <% @recent.each do |rating| %>
+  <li><%= rating.to_s %></li>
+  <% end %>
+  </ul>
+</div>
+<div class="row">
+
+  <h4> Best breweries:</h4>
+  <div class="col-md-4">
+    <%= render 'list', listables: @top_three_breweries %>
+  </div>
+
+  <h4>  Best beers:</h4>
+  <div class="col-md-4">
+    <%= render 'list', listables: @top_three_beers %>
+  </div>
+
+  <h4>  Best styles: </h4>
+  <div class="col-md-4">
+    <%= render 'list', listables: @top_three_styles %>
+  </div>
+</div>
+
+<h4> Most active users: </h4>
+<div class="col-md-8">
+  <%= render 'list', listables: @most_active_users %>
+</div>
+
+<% end %>
+
+<br />
+
+<div class="col-md-8">
+  <h3>All ratings:</h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Beer</th>
+      <th>Score</th>
+      <th>Rater</th>
+    </tr>
+    </thead>
+    <tbody>
+   <% @ratings.each do |rating| %>
+     <tr>
+       <td><%= link_to rating.beer.name, rating.beer%></td>
+       <td><%= rating.score %></td>
+       <td><%= link_to rating.user.username, rating.user %></td>
+     </tr>
+   <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="col-md-8">
 
 <% if current_user %>
-  <%= link_to 'Create a new rating', new_rating_path%>
+  <%= link_to 'Create a new rating', new_rating_path, class:"btn btn-default"%>
 <% end %>
+
+
+</div>

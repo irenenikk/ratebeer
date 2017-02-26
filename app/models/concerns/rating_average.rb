@@ -2,7 +2,11 @@ module RatingAverage
 
   def average_rating
     ratings = self.ratings;
-    return ratings.inject(0.0){ |sum, el| sum + el.score }.to_f / ratings.size
+    unless ratings.empty?
+      average = ratings.inject(0.0){ |sum, el| sum + el.score }.to_f / ratings.size
+    else
+      0
+    end
   end
-  
+
 end

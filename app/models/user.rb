@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   def favorite(attr)
     return nil if ratings.empty?
-    ratings_by_attr = ratings.group_by{ |rating| rating.beer.send attr}          
+    ratings_by_attr = ratings.group_by{ |rating| rating.beer.send attr}
     ratings_by_attr.each do |attr, ratings|
       ratings_by_attr[attr] = rating_average(ratings)
     end
@@ -55,6 +55,15 @@ class User < ActiveRecord::Base
 
   def rating_average(ratings)
     ratings.inject(0.0){ |sum, el| sum + el.score }.to_f / ratings.size
+  end
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -(b.beers.count||0) }
+    sorted_by_rating_in_desc_order[0..4]
+  end
+
+  def to_s
+    self.username
   end
 
 end

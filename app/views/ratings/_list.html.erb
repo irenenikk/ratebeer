@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Average</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% listables.each do |obj| %>
+      <tr>
+        <td><%= link_to obj.to_s, obj %></td>
+        <td><%= round(obj.average_rating) %>  </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
