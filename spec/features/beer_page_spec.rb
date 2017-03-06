@@ -25,7 +25,7 @@ describe "Beer" do
     expect(brewery.beers.count).to eq(1)
   end
 
-  it "is nto saved without a name" do
+  it "is not saved without a name" do
     visit new_beer_path
 
     select('API', from: 'beer[style_id]' )

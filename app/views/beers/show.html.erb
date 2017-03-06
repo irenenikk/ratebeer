@@ -1,22 +1,25 @@
-<h2> <%= @beer %></h2>
+<% cache @beer do %>
+  <h2> <%= @beer %></h2>
 
-<p>
-  <strong>Style:</strong>
-  <%= link_to @beer.style, @beer.style %>
-</p>
+  <p>
+    <strong>Style:</strong>
+    <%= link_to @beer.style, @beer.style %>
+  </p>
 
-<p>
-  <strong>Brewery:</strong>
-  <%= link_to @beer.brewery.name, @beer.brewery %>
-</p>
+  <p>
+    <strong>Brewery:</strong>
+    <%= link_to @beer.brewery.name, @beer.brewery %>
+  </p>
 
-<p>
-  <% if @beer.ratings.empty? %>
-    <span>This beer has not been rated</span>
-  <% else %>
-    Has <%= pluralize(@beer.ratings.count , 'rating') %>, average <%= round(@beer.average_rating) %>
-  <% end %>
-</p>
+  <p>
+    <% if @beer.ratings.empty? %>
+      <span>This beer has not been rated</span>
+    <% else %>
+      Has <%= pluralize(@beer.ratings.count , 'rating') %>, average <%= round(@beer.average_rating) %>
+    <% end %>
+  </p>
+
+<% end %>
 
 <% if current_user %>
   <h4>give a rating:</h4>
